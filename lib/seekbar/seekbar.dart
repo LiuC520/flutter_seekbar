@@ -7,9 +7,9 @@ import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import './ProgressValue.dart';
-import './GetTextWidth.dart';
-import './SectionTextModel.dart';
+import './progress_value.dart';
+import './get_text_width.dart';
+import './section_text_model.dart';
 
 ///要显示的刻度值
 ///如果要自定义刻度值，数组中需要包含这个实体类

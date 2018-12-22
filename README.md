@@ -68,7 +68,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_seekbar:
-    git: https://github.com/flutter_marquee/flutter_seekbar.git
+    git: https://github.com/LiuC520/flutter_seekbar.git
 
 ```
 
