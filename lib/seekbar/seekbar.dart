@@ -121,7 +121,7 @@ abstract class BasicSeekbar extends StatefulWidget {
   final String semanticsValue;
 
   ///进度改变的回调
-  final ValueChanged<ProgressValue> onValueChanged;
+  final void Function(ProgressValue value, bool isEnd) onValueChanged;
   // final void Function(double) onValueChanged;
 
   ///进度条是否是圆角的，还是方形的，默认是圆角的
@@ -846,37 +846,41 @@ class _SeekBarState extends State<SeekBar> {
       if (widget.afterDragShowSectionText ?? false) {
         _afterDragShowSectionText = true;
       }
+      _setValue();
     });
   }
 
-  void _setValue(double newValue) {
-    //这个是当前的进度 从0-1
-    _value = newValue / context.size.width;
+  void _setValue([double newValue = -1]) {
+    bool end = newValue == -1;
+    if (!end) {
+      //这个是当前的进度 从0-1
+      _value = newValue / context.size.width;
 
-    //这个�����值��能在这个地方获取，如果没有指定，就是容器的��度
-    if (sectionCount > 1) {
-      for (var i = 0; i < sectionCount; i++) {
-        if (_value >= i * e && _value <= (i + 1) * e) {
-          start = i * e;
-          if (i == sectionCount) {
-            end = sectionCount * e;
-          } else {
-            end = (i + 1) * e;
+      //这个�����值��能在这个地方获取，如果没有指定，就是容器的��度
+      if (sectionCount > 1) {
+        for (var i = 0; i < sectionCount; i++) {
+          if (_value >= i * e && _value <= (i + 1) * e) {
+            start = i * e;
+            if (i == sectionCount) {
+              end = sectionCount * e;
+            } else {
+              end = (i + 1) * e;
+            }
+            break;
           }
-          break;
         }
-      }
-      if (_value >= start + e / 2) {
-        _value = end;
-      } else {
-        _value = start;
+        if (_value >= start + e / 2) {
+          _value = end;
+        } else {
+          _value = start;
+        }
       }
     }
     double realValue = length * _value + _min; //真实的值
 
     if (widget.onValueChanged != null) {
       ProgressValue v = ProgressValue(progress: _value, value: realValue);
-      widget.onValueChanged(v);
+      widget.onValueChanged(v, end);
     }
   }
 
