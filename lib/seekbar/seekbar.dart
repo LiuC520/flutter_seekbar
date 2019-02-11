@@ -851,8 +851,8 @@ class _SeekBarState extends State<SeekBar> {
   }
 
   void _setValue([double newValue = -1]) {
-    bool end = newValue == -1;
-    if (!end) {
+    bool isEnd = newValue == -1;
+    if (!isEnd) {
       //这个是当前的进度 从0-1
       _value = newValue / context.size.width;
 
@@ -880,7 +880,7 @@ class _SeekBarState extends State<SeekBar> {
 
     if (widget.onValueChanged != null) {
       ProgressValue v = ProgressValue(progress: _value, value: realValue);
-      widget.onValueChanged(v, end);
+      widget.onValueChanged(v, isEnd);
     }
   }
 
