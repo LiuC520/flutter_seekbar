@@ -561,7 +561,7 @@ class SeekBar extends BasicSeekbar {
   bool bubbleInCenter;
   SeekBar({
     Key key,
-    ValueChanged<ProgressValue> onValueChanged,
+    void Function(ProgressValue value, bool isEnd) onValueChanged,
     double min,
     double max,
     double progresseight,
