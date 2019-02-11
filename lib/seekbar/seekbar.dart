@@ -773,7 +773,7 @@ class _SeekBarState extends State<SeekBar> {
     setState(() {
       touchPoint = new Offset(
           renderBox.globalToLocal(tapDetails.globalPosition).dx, 0.0);
-      _setValue(touchPoint.dx);
+      _setValue(touchPoint.dx, true);
       if (widget.alwaysShowBubble != null && widget.alwaysShowBubble
           ? false
           : true) {
@@ -846,12 +846,11 @@ class _SeekBarState extends State<SeekBar> {
       if (widget.afterDragShowSectionText ?? false) {
         _afterDragShowSectionText = true;
       }
-      _setValue();
+      _setValue(-1, true);
     });
   }
 
-  void _setValue([double newValue = -1]) {
-    bool isEnd = newValue == -1;
+  void _setValue(double newValue, [bool isEnd = false]) {
     if (!isEnd) {
       //这个是当前的进度 从0-1
       _value = newValue / context.size.width;
