@@ -158,7 +158,7 @@ abstract class BasicSeekbar extends StatefulWidget {
   Color _getBackgroundColor(BuildContext context) =>
       backgroundColor ?? Theme.of(context).backgroundColor;
   Color _getProgressColor(BuildContext context) =>
-      progressColor?.value ?? Theme.of(context).accentColor;
+      progressColor ?? Theme.of(context).accentColor;
 
   Widget _buildSemanticsWrapper({
     @required BuildContext context,
