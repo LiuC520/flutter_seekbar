@@ -45,6 +45,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       )),
                   Text(
                     "直角",
+                    textDirection: TextDirection.ltr,
+                    maxLines: 1,
                     style: TextStyle(fontSize: 10),
                   ),
                 ],
@@ -56,6 +58,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Container(
                         width: 200,
                         child: SeekBar(
+                            isCanTouch: false,
                             indicatorRadius: 0.0,
                             progresseight: 5,
                             value: 0.6,
@@ -69,6 +72,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             bubbleInCenter: true)),
                     Text(
                       "圆角，气泡居中，始终显示气泡",
+                      textDirection: TextDirection.ltr,
+                      maxLines: 1,
                       style: TextStyle(fontSize: 10),
                     ),
                   ],
@@ -87,6 +92,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "圆角带指示器",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     ),
                   ],
@@ -106,6 +112,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "带间隔带指示器",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -127,6 +134,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "带间隔画间隔的指示器",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -140,7 +148,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text('-10'),
+                        Text(
+                          '-10',
+                          textDirection: TextDirection.ltr,
+                        ),
                         Container(
                             margin: EdgeInsets.fromLTRB(10, 0, 10, 4),
                             width: 200,
@@ -162,11 +173,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 onValueChanged: (v) {
                                   print('当前进度：${v.progress} ，当前的取值：${v.value}');
                                 })),
-                        Text('80')
+                        Text(
+                          '80',
+                          textDirection: TextDirection.ltr,
+                        )
                       ],
                     ),
                     Text(
                       "带间隔带气泡的指示器，气泡",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -195,6 +210,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -230,6 +246,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -266,6 +283,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],
@@ -300,6 +318,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         )),
                     Text(
                       "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 10),
                     )
                   ],

@@ -56,6 +56,7 @@ dependencies:
 | bubbleTextSize        |14 |气泡中当前进度值的字体大小，默认是14
 | bubbleMargin        | 4|气泡底部距离进度条的高度，默认是4
 | bubbleInCenter        |  false |气泡是否在进度条的中间显示，默认是
+| isCanTouch        |  true |是否响应触摸事件，默认是响应的，也就是可以拖拽显示进度的
 
 
 
@@ -353,6 +354,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
                           width: 200,
                           child: SeekBar(
+                            isCanTouch:false,
                             progresseight: 10,
                             value: 0.75,
                             sectionCount: 4,

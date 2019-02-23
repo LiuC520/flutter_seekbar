@@ -158,7 +158,7 @@ abstract class BasicSeekbar extends StatefulWidget {
   Color _getBackgroundColor(BuildContext context) =>
       backgroundColor ?? Theme.of(context).backgroundColor;
   Color _getProgressColor(BuildContext context) =>
-      progressColor?.value ?? Theme.of(context).accentColor;
+      progressColor ?? Theme.of(context).accentColor;
 
   Widget _buildSemanticsWrapper({
     @required BuildContext context,
@@ -559,6 +559,9 @@ class SeekBar extends BasicSeekbar {
   /// 气泡距离底部的高度
   double bubbleMargin;
   bool bubbleInCenter;
+
+  /// 是否可以触摸响应触摸事件
+  bool isCanTouch;
   SeekBar({
     Key key,
     void Function(ProgressValue value, bool isEnd) onValueChanged,
@@ -608,6 +611,7 @@ class SeekBar extends BasicSeekbar {
     this.bubbleMargin = 4.0,
     this.bubbleInCenter = false,
     this.alwaysShowBubble,
+    this.isCanTouch = true,
   })  : this.hideBubble = hideBubble ?? true,
         this.bubbleRadius = bubbleRadius ?? 20,
         super(
@@ -885,11 +889,15 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onPanDown: _onPanDown,
-        onPanUpdate: _onPanUpdate,
-        onPanEnd: _onPanEnd,
-        onTapUp: _onTapUp,
-        child: _buildSeekBar(context, _value, _min, _max));
+    if (widget.isCanTouch) {
+      return GestureDetector(
+          onPanDown: _onPanDown,
+          onPanUpdate: _onPanUpdate,
+          onPanEnd: _onPanEnd,
+          onTapUp: _onTapUp,
+          child: _buildSeekBar(context, _value, _min, _max));
+    } else {
+      return _buildSeekBar(context, _value, _min, _max);
+    }
   }
 }
