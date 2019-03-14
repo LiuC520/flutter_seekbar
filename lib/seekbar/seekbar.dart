@@ -183,6 +183,7 @@ abstract class BasicSeekbar extends StatefulWidget {
   }
 }
 
+@immutable
 class _SeekBarPainter extends CustomPainter {
   ///背景颜色
   final Color backgroundColor;
@@ -565,10 +566,10 @@ class SeekBar extends BasicSeekbar {
   SeekBar({
     Key key,
     ValueChanged<ProgressValue> onValueChanged,
-    double min,
-    double max,
+    double min = 0.0,
+    double max = 100.0,
     double progresseight,
-    double value,
+    double value = 0.0,
     Color backgroundColor,
     Color progressColor,
     String semanticsLabel,
@@ -678,8 +679,6 @@ class _SeekBarState extends State<SeekBar> {
   ///气泡的总高度
   double bubbleHeight;
   bool _alwaysShowBubble;
-  double _min;
-  double _max;
 
   double length;
   double e;
@@ -687,14 +686,11 @@ class _SeekBarState extends State<SeekBar> {
   double end;
   Offset touchPoint = Offset.zero;
   ProgressValue v;
+
   @override
   void initState() {
     super.initState();
-
-    _min = widget.min ?? 0.0;
-    _max = widget.max ?? 100.0;
-    double value = widget.value ?? 0.0;
-    _value = (value - _min) / (_max - _min);
+    _value = (widget.value - widget.min) / (widget.max - widget.min);
     progresseight = widget.progresseight ?? 5.0;
     indicatorRadius = widget.indicatorRadius ?? progresseight + 2;
     sectionCount = widget.sectionCount ?? 1;
@@ -713,7 +709,7 @@ class _SeekBarState extends State<SeekBar> {
     } else {
       totalHeight = progresseight;
     }
-    length = (_max - _min); //总���小
+    length = (widget.max - widget.min); //总���小
   }
 
   Widget _buildSeekBar(
@@ -777,7 +773,8 @@ class _SeekBarState extends State<SeekBar> {
     setState(() {
       touchPoint = new Offset(
           renderBox.globalToLocal(tapDetails.globalPosition).dx, 0.0);
-      _setValue(touchPoint.dx);
+      _value = touchPoint.dx / context.size.width;
+      _setValue();
       if (widget.alwaysShowBubble != null && widget.alwaysShowBubble
           ? false
           : true) {
@@ -806,7 +803,8 @@ class _SeekBarState extends State<SeekBar> {
       touchPoint = new Offset(touchPoint.dx, context.size.height);
     }
     setState(() {
-      _setValue(touchPoint.dx);
+      _value = touchPoint.dx / context.size.width;
+      _setValue();
       if (widget.alwaysShowBubble != null && widget.alwaysShowBubble
           ? false
           : true) {
@@ -836,7 +834,9 @@ class _SeekBarState extends State<SeekBar> {
       touchPoint = new Offset(touchPoint.dx, context.size.height);
     }
     setState(() {
-      _setValue(touchPoint.dx);
+      _value = touchPoint.dx / context.size.width;
+
+      _setValue();
     });
   }
 
@@ -853,10 +853,8 @@ class _SeekBarState extends State<SeekBar> {
     });
   }
 
-  void _setValue(double newValue) {
+  void _setValue() {
     //这个是当前的进度 从0-1
-    _value = newValue / context.size.width;
-
     //这个�����值��能在这个地方获取，如果没有指定，就是容器的��度
     if (sectionCount > 1) {
       for (var i = 0; i < sectionCount; i++) {
@@ -876,12 +874,20 @@ class _SeekBarState extends State<SeekBar> {
         _value = start;
       }
     }
-    double realValue = length * _value + _min; //真实的值
+    double realValue = length * _value + widget.min; //真实的值
 
     if (widget.onValueChanged != null) {
       ProgressValue v = ProgressValue(progress: _value, value: realValue);
       widget.onValueChanged(v);
     }
+  }
+
+  @override
+  void didUpdateWidget(SeekBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    setState(() {
+      _value = (widget.value - widget.min) / (widget.max - widget.min);
+    });
   }
 
   @override
@@ -892,9 +898,9 @@ class _SeekBarState extends State<SeekBar> {
           onPanUpdate: _onPanUpdate,
           onPanEnd: _onPanEnd,
           onTapUp: _onTapUp,
-          child: _buildSeekBar(context, _value, _min, _max));
+          child: _buildSeekBar(context, _value, widget.min, widget.max));
     } else {
-      return _buildSeekBar(context, _value, _min, _max);
+      return _buildSeekBar(context, _value, widget.min, widget.max);
     }
   }
 }

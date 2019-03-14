@@ -25,7 +25,7 @@ dependencies:
 |:---				     |:---                |:---|
 | min         | 0.0  |最小值|
 | max         | 100.0 |最大值|
-| value         |0.0 |默认进度值|
+| value         |0 |默认进度值，最大值默认是100，指定了max，最大值是max|
 | backgroundColor         | 页面配置的backgroundColor  |进度条背景颜色|
 | progressColor         | accentColor | 当前进度的颜色|
 | progresseight         | 5 |进度条的高度|
@@ -108,279 +108,310 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             child: Column(
               children: <Widget>[
                 Column(
+                children: <Widget>[
+                  Container(
+                      width: 200,
+                      child: SeekBar(
+                        progresseight: 10,
+                        indicatorRadius: 0.0,
+                        value: v,
+                        isRound: false,
+                        progressColor: Colors.red,
+                      )),
+                  GestureDetector(
+                      onTap: () => {
+                            this.setState(() {
+                              v = 60;
+                            })
+                          },
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        width: 50,
+                        height: 50,
+                        color: Colors.blue,
+                        child: Text(
+                          "直角",
+                          textDirection: TextDirection.ltr,
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      )),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
                   children: <Widget>[
                     Container(
                         width: 200,
                         child: SeekBar(
-                          progresseight: 10,
-                          indicatorRadius: 0.0,
-                          value: 0.2,
-                          isRound: false,
-                        )),
+                            isCanTouch: false,
+                            indicatorRadius: 0.0,
+                            progresseight: 5,
+                            value: 50,
+                            hideBubble: false,
+                            alwaysShowBubble: true,
+                            bubbleRadius: 14,
+                            bubbleColor: Colors.purple,
+                            bubbleTextColor: Colors.white,
+                            bubbleTextSize: 14,
+                            bubbleMargin: 4,
+                            bubbleInCenter: true)),
                     Text(
-                      "直角",
+                      "圆角，气泡居中，始终显示气泡",
+                      textDirection: TextDirection.ltr,
+                      maxLines: 1,
                       style: TextStyle(fontSize: 10),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          width: 200,
-                          child: SeekBar(
-                              indicatorRadius: 0.0,
-                              progresseight: 5,
-                              value: 0.6,
-                              hideBubble: false,
-                              alwaysShowBubble: true,
-                              bubbleRadius: 14,
-                              bubbleColor: Colors.purple,
-                              bubbleTextColor: Colors.white,
-                              bubbleTextSize: 14,
-                              bubbleMargin: 4,
-                              bubbleInCenter: true)),
-                      Text(
-                        "圆角，气泡居中，始终显示气泡",
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 5,
+                          value: 20,
+                        )),
+                    Text(
+                      "圆角带指示器",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
-                          width: 200,
-                          child: SeekBar(
-                            progresseight: 5,
-                            value: 0.2,
-                          )),
-                      Text(
-                        "圆角带指示器",
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 5,
+                          value: 50,
+                          sectionCount: 5,
+                        )),
+                    Text(
+                      "带间隔带指示器",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
-                          width: 200,
-                          child: SeekBar(
-                            progresseight: 5,
-                            value: 0.5,
-                            sectionCount: 5,
-                          )),
-                      Text(
-                        "带间隔带指示器",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 5,
+                          value: 50,
+                          sectionCount: 4,
+                          sectionRadius: 6,
+                          sectionColor: Colors.red,
+                        )),
+                    Text(
+                      "带间隔画间隔的指示器",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
-                          width: 200,
-                          child: SeekBar(
-                            progresseight: 5,
-                            value: 0.5,
-                            sectionCount: 4,
-                            sectionRadius: 6,
-                            sectionColor: Colors.red,
-                          )),
-                      Text(
-                        "带间隔画间隔的指示器",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      textDirection: TextDirection.ltr,
+                      children: <Widget>[
+                        Text(
+                          '-10',
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Container(
+                            margin: EdgeInsets.fromLTRB(10, 0, 10, 4),
+                            width: 200,
+                            child: SeekBar(
+                                progresseight: 5,
+                                value: 58,
+                                min: -10,
+                                max: 80,
+                                sectionCount: 4,
+                                sectionRadius: 6,
+                                sectionColor: Colors.red,
+                                hideBubble: false,
+                                alwaysShowBubble: true,
+                                bubbleRadius: 14,
+                                bubbleColor: Colors.purple,
+                                bubbleTextColor: Colors.white,
+                                bubbleTextSize: 14,
+                                bubbleMargin: 4,
+                                onValueChanged: (v) {
+                                  print('当前进度：${v.progress} ，当前的取值：${v.value}');
+                                })),
+                        Text(
+                          '80',
+                          textDirection: TextDirection.ltr,
+                        )
+                      ],
+                    ),
+                    Text(
+                      "带间隔带气泡的指示器，气泡",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text('-10'),
-                          Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 4),
-                              width: 200,
-                              child: SeekBar(
-                                  progresseight: 5,
-                                  value: 0.5,
-                                  min: -10,
-                                  max: 80,
-                                  sectionCount: 4,
-                                  sectionRadius: 6,
-                                  sectionColor: Colors.red,
-                                  hideBubble: false,
-                                  alwaysShowBubble: true,
-                                  bubbleRadius: 14,
-                                  bubbleColor: Colors.purple,
-                                  bubbleTextColor: Colors.white,
-                                  bubbleTextSize: 14,
-                                  bubbleMargin: 4,
-                                  onValueChanged: (v) {
-                                    print(
-                                        '当前进度：${v.progress} ，当前的取值：${v.value}');
-                                  })),
-                          Text('80')
-                        ],
-                      ),
-                      Text(
-                        "带间隔带气泡的指示器，气泡",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 10,
+                          value: 50,
+                          sectionCount: 4,
+                          sectionRadius: 5,
+                          sectionColor: Colors.red,
+                          sectionUnSelecteColor: Colors.red[100],
+                          showSectionText: true,
+                          sectionTextMarginTop: 2,
+                          sectionDecimal: 0,
+                          sectionTextColor: Colors.black,
+                          sectionSelectTextColor: Colors.red,
+                          sectionTextSize: 14,
+                        )),
+                    Text(
+                      "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                          width: 200,
-                          child: SeekBar(
-                            progresseight: 10,
-                            value: 0.5,
-                            sectionCount: 4,
-                            sectionRadius: 5,
-                            sectionColor: Colors.red,
-                            sectionUnSelecteColor: Colors.red[100],
-                            showSectionText: true,
-                            sectionTextMarginTop: 2,
-                            sectionDecimal: 0,
-                            sectionTextColor: Colors.black,
-                            sectionSelectTextColor: Colors.red,
-                            sectionTextSize: 14,
-                          )),
-                      Text(
-                        "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 10,
+                          value: 50,
+                          sectionCount: 4,
+                          sectionRadius: 5,
+                          sectionColor: Colors.red,
+                          sectionUnSelecteColor: Colors.red[100],
+                          showSectionText: true,
+                          sectionTextMarginTop: 2,
+                          sectionDecimal: 0,
+                          sectionTextColor: Colors.black,
+                          sectionSelectTextColor: Colors.red,
+                          sectionTextSize: 14,
+                          hideBubble: false,
+                          bubbleRadius: 14,
+                          bubbleColor: Colors.purple,
+                          bubbleTextColor: Colors.white,
+                          bubbleTextSize: 14,
+                          bubbleMargin: 4,
+                          afterDragShowSectionText: true,
+                        )),
+                    Text(
+                      "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                          width: 200,
-                          child: SeekBar(
-                            progresseight: 10,
-                            value: 0.5,
-                            sectionCount: 4,
-                            sectionRadius: 5,
-                            sectionColor: Colors.red,
-                            sectionUnSelecteColor: Colors.red[100],
-                            showSectionText: true,
-                            sectionTextMarginTop: 2,
-                            sectionDecimal: 0,
-                            sectionTextColor: Colors.black,
-                            sectionSelectTextColor: Colors.red,
-                            sectionTextSize: 14,
-                            hideBubble: false,
-                            bubbleRadius: 14,
-                            bubbleColor: Colors.purple,
-                            bubbleTextColor: Colors.white,
-                            bubbleTextSize: 14,
-                            bubbleMargin: 4,
-                            afterDragShowSectionText: true,
-                          )),
-                      Text(
-                        "带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                        width: 200,
+                        child: SeekBar(
+                          min: -100,
+                          max: 200,
+                          progresseight: 10,
+                          value: 50,
+                          sectionCount: 4,
+                          sectionRadius: 6,
+                          showSectionText: true,
+                          sectionTexts: [],
+                          sectionTextMarginTop: 2,
+                          sectionDecimal: 0,
+                          sectionTextColor: Colors.black,
+                          sectionSelectTextColor: Colors.red,
+                          sectionTextSize: 14,
+                          hideBubble: false,
+                          bubbleRadius: 14,
+                          bubbleColor: Colors.purple,
+                          bubbleTextColor: Colors.white,
+                          bubbleTextSize: 14,
+                          bubbleMargin: 4,
+                          afterDragShowSectionText: true,
+                        )),
+                    Text(
+                      "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                          width: 200,
-                          child: SeekBar(
-                            min: -100,
-                            max: 200,
-                            progresseight: 10,
-                            value: 0.75,
-                            sectionCount: 4,
-                            sectionRadius: 6,
-                            showSectionText: true,
-                            sectionTexts: [],
-                            sectionTextMarginTop: 2,
-                            sectionDecimal: 0,
-                            sectionTextColor: Colors.black,
-                            sectionSelectTextColor: Colors.red,
-                            sectionTextSize: 14,
-                            hideBubble: false,
-                            bubbleRadius: 14,
-                            bubbleColor: Colors.purple,
-                            bubbleTextColor: Colors.white,
-                            bubbleTextSize: 14,
-                            bubbleMargin: 4,
-                            afterDragShowSectionText: true,
-                          )),
-                      Text(
-                        "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                        width: 200,
+                        child: SeekBar(
+                          progresseight: 10,
+                          value: 75,
+                          sectionCount: 4,
+                          sectionRadius: 6,
+                          showSectionText: true,
+                          sectionTexts: sectionTexts,
+                          sectionTextMarginTop: 2,
+                          sectionDecimal: 0,
+                          sectionTextColor: Colors.black,
+                          sectionSelectTextColor: Colors.red,
+                          sectionTextSize: 14,
+                          hideBubble: false,
+                          bubbleRadius: 14,
+                          bubbleColor: Colors.purple,
+                          bubbleTextColor: Colors.white,
+                          bubbleTextSize: 14,
+                          bubbleMargin: 4,
+                          afterDragShowSectionText: true,
+                        )),
+                    Text(
+                      "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(fontSize: 10),
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
-                          width: 200,
-                          child: SeekBar(
-                            isCanTouch:false,
-                            progresseight: 10,
-                            value: 0.75,
-                            sectionCount: 4,
-                            sectionRadius: 6,
-                            showSectionText: true,
-                            sectionTexts: sectionTexts,
-                            sectionTextMarginTop: 2,
-                            sectionDecimal: 0,
-                            sectionTextColor: Colors.black,
-                            sectionSelectTextColor: Colors.red,
-                            sectionTextSize: 14,
-                            hideBubble: false,
-                            bubbleRadius: 14,
-                            bubbleColor: Colors.purple,
-                            bubbleTextColor: Colors.white,
-                            bubbleTextSize: 14,
-                            bubbleMargin: 4,
-                            afterDragShowSectionText: true,
-                          )),
-                      Text(
-                        "自定义刻度值显示，带带刻度的指示器,可设置刻度的样式和选中的刻度的样式，拖拽结束显示刻度值，拖拽开始显示气泡",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
-                ),
+              ),
               ],
             )),
       );

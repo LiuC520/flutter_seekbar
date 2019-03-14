@@ -14,10 +14,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List<SectionTextModel> sectionTexts = [];
-
+  double v;
   @override
   void initState() {
     super.initState();
+    v = 80;
     sectionTexts.add(
         SectionTextModel(position: 0, text: 'bad', progressColor: Colors.red));
     sectionTexts.add(SectionTextModel(
@@ -40,15 +41,28 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       child: SeekBar(
                         progresseight: 10,
                         indicatorRadius: 0.0,
-                        value: 0.2,
+                        value: v,
                         isRound: false,
+                        progressColor: Colors.red,
                       )),
-                  Text(
-                    "直角",
-                    textDirection: TextDirection.ltr,
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 10),
-                  ),
+                  GestureDetector(
+                      onTap: () => {
+                            this.setState(() {
+                              v = 60;
+                            })
+                          },
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        width: 50,
+                        height: 50,
+                        color: Colors.blue,
+                        child: Text(
+                          "直角",
+                          textDirection: TextDirection.ltr,
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      )),
                 ],
               ),
               Padding(
@@ -61,7 +75,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             isCanTouch: false,
                             indicatorRadius: 0.0,
                             progresseight: 5,
-                            value: 0.6,
+                            value: 50,
                             hideBubble: false,
                             alwaysShowBubble: true,
                             bubbleRadius: 14,
@@ -88,7 +102,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 5,
-                          value: 0.2,
+                          value: 20,
                         )),
                     Text(
                       "圆角带指示器",
@@ -107,7 +121,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 5,
-                          value: 0.5,
+                          value: 50,
                           sectionCount: 5,
                         )),
                     Text(
@@ -127,7 +141,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 5,
-                          value: 0.5,
+                          value: 50,
                           sectionCount: 4,
                           sectionRadius: 6,
                           sectionColor: Colors.red,
@@ -147,6 +161,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
+                      textDirection: TextDirection.ltr,
                       children: <Widget>[
                         Text(
                           '-10',
@@ -157,7 +172,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             width: 200,
                             child: SeekBar(
                                 progresseight: 5,
-                                value: 0.5,
+                                value: 58,
                                 min: -10,
                                 max: 80,
                                 sectionCount: 4,
@@ -196,7 +211,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 10,
-                          value: 0.5,
+                          value: 50,
                           sectionCount: 4,
                           sectionRadius: 5,
                           sectionColor: Colors.red,
@@ -225,7 +240,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 10,
-                          value: 0.5,
+                          value: 50,
                           sectionCount: 4,
                           sectionRadius: 5,
                           sectionColor: Colors.red,
@@ -263,7 +278,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           min: -100,
                           max: 200,
                           progresseight: 10,
-                          value: 0.75,
+                          value: 50,
                           sectionCount: 4,
                           sectionRadius: 6,
                           showSectionText: true,
@@ -298,7 +313,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         width: 200,
                         child: SeekBar(
                           progresseight: 10,
-                          value: 0.75,
+                          value: 75,
                           sectionCount: 4,
                           sectionRadius: 6,
                           showSectionText: true,
