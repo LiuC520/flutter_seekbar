@@ -83,7 +83,7 @@ abstract class BasicSeekbar extends StatefulWidget {
   final bool showSectionText;
 
   /// 刻度值的数组
-  final List<SectionTextModel> sectionTexts;
+  final List<SectionTextModel>? sectionTexts;
 
   ///刻度值的字体大小
   final double sectionTextSize;
@@ -135,24 +135,24 @@ abstract class BasicSeekbar extends StatefulWidget {
       required this.max,
       required this.value,
       required this.progresseight,
-        required this.sectionCount,
+      required this.sectionCount,
       required this.sectionColor,
       required this.sectionUnSelecteColor,
       required this.sectionRadius,
       required this.showSectionText,
-      required this.sectionTexts,
+      this.sectionTexts,
       required this.sectionTextSize,
       required this.afterDragShowSectionText,
       this.sectionTextColor,
-      required this.sectionSelectTextColor ,
+      required this.sectionSelectTextColor,
       required this.sectionDecimal,
       required this.sectionTextMarginTop,
       this.backgroundColor,
       this.progressColor,
-       this.semanticsLabel,
-       this.semanticsValue,
-       this.indicatorRadius,
-       this.indicatorColor,
+      this.semanticsLabel,
+      this.semanticsValue,
+      this.indicatorRadius,
+      this.indicatorColor,
       this.onValueChanged,
       required this.isRound})
       : super(key: key);
@@ -571,7 +571,7 @@ class SeekBar extends BasicSeekbar {
     ValueChanged<ProgressValue>? onValueChanged,
     double min = 0.0,
     double max = 100.0,
-    double progresseight  = 5.0,
+    double progresseight = 5.0,
     double value = 0.0,
     Color? backgroundColor,
     Color? progressColor,
@@ -588,7 +588,7 @@ class SeekBar extends BasicSeekbar {
     bool showSectionText = false,
 
     /// 刻度值的数组
-    required final List<SectionTextModel> sectionTexts,
+    final List<SectionTextModel>? sectionTexts,
 
     ///刻度值的字体大小
     final double sectionTextSize = 14.0,
@@ -701,13 +701,13 @@ class _SeekBarState extends State<SeekBar> {
     bubbleHeight = widget.bubbleHeight ?? widget.bubbleRadius * 3;
     _alwaysShowBubble = widget.alwaysShowBubble ?? false;
     _afterDragShowSectionText = false;
-    if (sectionCount> 1) {
+    if (sectionCount > 1) {
       e = 1 / sectionCount; //每一份的值
       start = 0.0;
       end = 0.0;
     }
 
-    if (indicatorRadius>= progresseight!) {
+    if (indicatorRadius >= progresseight!) {
       totalHeight = indicatorRadius * 2;
     } else {
       totalHeight = progresseight;
