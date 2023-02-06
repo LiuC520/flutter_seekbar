@@ -7,7 +7,7 @@ import 'package:flutter/material.dart'
 import 'dart:ui' as ui;
 
 ///获取字体的宽高，放在size中
-Size getTextWidth({String text, double fontsize}) {
+Size getTextWidth({required String text, required double fontsize}) {
   //此���主要是拿到text的宽高，然后给个约束，同时把text准确的放到某个位置上
   final textPainter = TextPainter(
     textDirection: TextDirection.ltr,
@@ -22,7 +22,7 @@ Size getTextWidth({String text, double fontsize}) {
 
 ///生成一个字体的形状，来画出来
 ui.Paragraph getParagraph(
-    {String text, double fontsize, Color textColor, Size textSize}) {
+    {required String text, required double fontsize, required Color textColor, required Size textSize}) {
   //此处��须用ui���������中的，否则会找不到相关的路径
   ui.TextStyle ts = ui.TextStyle(color: textColor, fontSize: fontsize);
 

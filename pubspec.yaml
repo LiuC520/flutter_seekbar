@@ -4,7 +4,7 @@ version: 0.0.3
 author: liucheng <liu520vr@gmail.com>
 homepage: https://github.com/LiuC520/flutter_seekbar
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: '>=2.18.4 <3.0.0'
 
 dependencies:
   flutter:
